@@ -60,6 +60,7 @@
 
             <!-- Card 1: Daily Reminders -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/daily_reminders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
@@ -116,6 +117,7 @@
 
             <!-- Card 2: Daily Journal -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/daily_journal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
@@ -169,6 +171,7 @@
 
             <!-- Card 3: Self-Assessment -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/self_assessment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
@@ -222,6 +225,7 @@
 
             <!-- Card 4: Hotline Access -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/hotline_access"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
