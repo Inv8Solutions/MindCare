@@ -23,8 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login"/>
-        <activity android:name=".Register"
-
+        <activity android:name=".Register"/>
+        <activity android:name=".Dashboard"/>
+        <activity android:name=".NewJournalEntryActivity"/>
+        <activity android:name=".HotlineAccessActivity"/>
     </application>
 
 </manifest>
