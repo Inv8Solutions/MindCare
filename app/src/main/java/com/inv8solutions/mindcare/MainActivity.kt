@@ -17,9 +17,17 @@ class MainActivity : ComponentActivity() {
 
         val loginBtn = findViewById<Button>(R.id.btnLogin)
 
+
         // Add click listener
         loginBtn.setOnClickListener {
             val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
+        val registerBtn = findViewById<Button>(R.id.btnRegister)
+
+        // Add click listener
+        registerBtn.setOnClickListener {
+            val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
     }
