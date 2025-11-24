@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 
-class HotlineAccessActivity : AppCompatActivity() {
+class HotlineAccessActivity : ComponentActivity() {
 
     private lateinit var btnBack: ImageView
     private lateinit var btnCall911: Button
@@ -43,33 +43,13 @@ class HotlineAccessActivity : AppCompatActivity() {
             finish()
         }
 
-        btnCall911.setOnClickListener {
-            makeCall("911")
-        }
-
-        btnCrisis.setOnClickListener {
-            makeCall("988")
-        }
-
-        btnStudent.setOnClickListener {
-            makeCall("18002738255")
-        }
-
-        btnTextLine.setOnClickListener {
-            sendSMS("741741", "HOME")
-        }
-
-        btnAnxiety.setOnClickListener {
-            makeCall("18009506264")
-        }
-
-        btnSpecialNeeds.setOnClickListener {
-            makeCall("18002345678")
-        }
-
-        btnCampus.setOnClickListener {
-            makeCall("18005550123")
-        }
+        btnCall911.setOnClickListener { makeCall("911") }
+        btnCrisis.setOnClickListener { makeCall("988") }
+        btnStudent.setOnClickListener { makeCall("18002738255") }
+        btnTextLine.setOnClickListener { sendSMS("741741", "HOME") }
+        btnAnxiety.setOnClickListener { makeCall("18009506264") }
+        btnSpecialNeeds.setOnClickListener { makeCall("18002345678") }
+        btnCampus.setOnClickListener { makeCall("18005550123") }
     }
 
     private fun makeCall(phoneNumber: String) {
@@ -93,4 +73,3 @@ class HotlineAccessActivity : AppCompatActivity() {
         }
     }
 }
-

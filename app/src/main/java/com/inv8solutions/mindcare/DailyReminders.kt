@@ -17,43 +17,43 @@ class DailyReminders : ComponentActivity() {
         val switchEvening = findViewById<Switch>(R.id.switchSleep)
         val switchNight = findViewById<Switch>(R.id.switchTask)
 
-        // Morning Switch Logic
+        // Breaktime Logic
         switchMorning.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                Toast.makeText(this, "Morning reminders enabled", Toast.LENGTH_SHORT).show()
-                // TODO: Add your morning notification logic here
+                Toast.makeText(this, "Breaks every hour is enabled", Toast.LENGTH_SHORT).show()
+                // TODO: Add your breaktime logic here
             } else {
-                Toast.makeText(this, "Morning reminders disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Breaks every hour is disabled", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Afternoon Switch Logic
+        // Hydration Logic
         switchAfternoon.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                Toast.makeText(this, "Afternoon reminders enabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Hydration notification every hour is enabled", Toast.LENGTH_SHORT).show()
                 // TODO: Add your afternoon notification logic here
             } else {
-                Toast.makeText(this, "Afternoon reminders disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Hydration notification every hour is disabled", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Evening Switch Logic
+        // Sleep Schedule Logic
         switchEvening.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                Toast.makeText(this, "Evening reminders enabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Evening Sleep Schedule reminders enabled", Toast.LENGTH_SHORT).show()
                 // TODO: Add your evening notification logic here
             } else {
-                Toast.makeText(this, "Evening reminders disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Evening Sleep Schedule reminders disabled", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Night Switch Logic (NEW)
+        // Task Submission Logic
         switchNight.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                Toast.makeText(this, "Night reminders enabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Daily Check-in Enabled", Toast.LENGTH_SHORT).show()
                 // TODO: Add your night notification logic here
             } else {
-                Toast.makeText(this, "Night reminders disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Daily Check-in disabled", Toast.LENGTH_SHORT).show()
             }
         }
     }
