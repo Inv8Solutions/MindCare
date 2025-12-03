@@ -11,6 +11,11 @@ android {
         version = release(36)
     }
 
+    buildFeatures {
+        viewBinding = true
+        dataBinding = false  // make sure this is false
+    }
+
     defaultConfig {
         applicationId = "com.inv8solutions.mindcare"
         minSdk = 24

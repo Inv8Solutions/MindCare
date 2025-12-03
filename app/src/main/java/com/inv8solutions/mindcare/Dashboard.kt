@@ -44,7 +44,7 @@ class Dashboard : ComponentActivity() {
         }
 
         findViewById<CardView>(R.id.hotline_access).setOnClickListener {
-            startActivity(Intent(this, HotlineAccess::class.java))
+            startActivity(Intent(this, HotlineAccessActivity::class.java))
         }
     }
 

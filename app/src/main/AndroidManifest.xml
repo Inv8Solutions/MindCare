@@ -29,6 +29,8 @@
         <activity android:name=".HotlineAccessActivity"/>
         <activity android:name=".DailyReminders"/>
         <activity android:name=".DailyJournal"/>
+        <activity android:name=".SelfAssessment"/>
+        <activity android:name=".HotlineAccess"/>
 
         
     </application>

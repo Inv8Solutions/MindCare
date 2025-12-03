@@ -12,7 +12,7 @@ class JournalAdapter(private var journalList: List<JournalEntry>)
     class JournalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvScenarioTitle)
         val tvDescription: TextView = itemView.findViewById(R.id.tvScenarioDescription)
-        val tvCategory: TextView = itemView.findViewById(R.id.tvScenarioDescription)
+        val tvCategory: TextView = itemView.findViewById(R.id.tvScenarioCategory)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JournalViewHolder {
