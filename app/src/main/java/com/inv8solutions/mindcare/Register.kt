@@ -74,7 +74,10 @@ class Register : ComponentActivity() {
                         val userMap = mapOf(
                             "uid" to uid,
                             "fullName" to name,
-                            "email" to email
+                            "email" to email,
+                            "isApproved" to false,
+                            "isLSN" to false,
+                            "registrationDate" to System.currentTimeMillis()
                         )
 
                         firestore.collection("users")

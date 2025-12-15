@@ -12,6 +12,8 @@ import androidx.activity.ComponentActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.setPadding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.inv8solutions.mindcare.databinding.SelfAssessmentBinding
 import kotlin.inc
 import kotlin.text.compareTo
@@ -19,6 +21,8 @@ import kotlin.text.compareTo
 class SelfAssessment : ComponentActivity() {
 
     private lateinit var binding: SelfAssessmentBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     // 1. The Questions list
     private val questions = listOf(
@@ -54,6 +58,9 @@ class SelfAssessment : ComponentActivity() {
         binding = SelfAssessmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+
         loadQuestion(currentIndex)
 
         binding.btnNext.setOnClickListener {
@@ -66,6 +73,9 @@ class SelfAssessment : ComponentActivity() {
                     binding.tvProgressCount.text = "Completed!"
                     binding.btnNext.text = "Done"
                     binding.btnNext.isEnabled = true  // Keep enabled so user can click it
+
+                    // Save responses to Firestore
+                    saveResponsesToFirestore()
 
                     // Set new click listener for Done button
                     binding.btnNext.setOnClickListener {
@@ -184,6 +194,70 @@ class SelfAssessment : ComponentActivity() {
         if (currentIndex < questions.size -1) {
             binding.btnNext.text = "Next"
             binding.btnNext.isEnabled = true
+        }
+    }
+
+    private fun saveResponsesToFirestore() {
+        val currentUser = auth.currentUser ?: return
+
+        // Get user info
+        firestore.collection("users")
+            .document(currentUser.uid)
+            .get()
+            .addOnSuccessListener { document ->
+                val userName = document.getString("fullName") ?: "Unknown"
+                val userEmail = document.getString("email") ?: "Unknown"
+
+                // Create responses map with questions as keys
+                val responsesMap = mutableMapOf<String, String>()
+                answers.forEach { (index, answer) ->
+                    responsesMap[questions[index]] = answer
+                }
+
+                // Calculate risk level based on responses
+                val riskLevel = calculateRiskLevel()
+
+                // Create questionnaire response object
+                val questionnaireData = hashMapOf(
+                    "uid" to currentUser.uid,
+                    "userName" to userName,
+                    "userEmail" to userEmail,
+                    "responses" to responsesMap,
+                    "submittedDate" to System.currentTimeMillis(),
+                    "riskLevel" to riskLevel
+                )
+
+                // Save to Firestore
+                firestore.collection("questionnaires")
+                    .document(currentUser.uid + "_" + System.currentTimeMillis())
+                    .set(questionnaireData)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Assessment saved successfully", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error saving assessment: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
+    }
+
+    private fun calculateRiskLevel(): String {
+        // Count "Yes" responses to critical questions (indices 13-19 are suicide-related)
+        var criticalYesCount = 0
+        var totalYesCount = 0
+
+        answers.forEach { (index, answer) ->
+            if (answer == "Yes") {
+                totalYesCount++
+                if (index >= 13 && index <= 19) {
+                    criticalYesCount++
+                }
+            }
+        }
+
+        return when {
+            criticalYesCount > 0 -> "High"
+            totalYesCount > 10 -> "Medium"
+            else -> "Low"
         }
     }
 }

@@ -146,6 +146,7 @@
 
     <!-- Footer Text -->
     <LinearLayout
+        android:id="@+id/layoutRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -168,5 +169,19 @@
             android:textColor="#2962FF"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <!-- Admin Login Link -->
+    <TextView
+        android:id="@+id/tvAdminLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="🔐 Admin Login"
+        android:textColor="#FF6F00"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
